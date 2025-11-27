@@ -1,27 +1,28 @@
 from fastapi import FastAPI, HTTPException
-from model.models import Student
+
+from dtos.student_dto import StudentCreate
 
 
 students = []
+student_counter = 0
 app = FastAPI()
 
 @app.post("/students", status_code=201)
-def create_student(data: Student):
+def create_student(student: StudentCreate):
+    global student_counter
 
-    # email and ID must be unique
+    # email must be unique
     for s in students:
-        if s["email"] == data.email:
+        if s["email"] == student.email:
             raise HTTPException(status_code=400, detail="Email already exists.")
 
-        if s["id"] == data.id:
-            raise HTTPException(status_code=400, detail="ID already exists.")
-
     new_student = {
-        "id": data.id,
-        "name": data.name,
-        "email": data.email,
-        "is_admin": data.is_admin
+        "id": str(student_counter),
+        "name": student.name,
+        "email": student.email,
+        "isAdmin": student.isAdmin
     }
+    student_counter += 1
 
     students.append(new_student)
     return new_student

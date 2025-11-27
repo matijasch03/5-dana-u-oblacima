@@ -9,7 +9,7 @@ class Student(BaseModel):
     id: str
     name: str
     email: str
-    is_admin: bool
+    isAdmin: bool
 
 class WorkingHour(BaseModel):
     meal: Meal

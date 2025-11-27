@@ -6,9 +6,8 @@ from enums import *
 
 
 class Student(BaseModel):
-    id: int
+    id: str
     name: str
-    surname: str
     email: str
     is_admin: bool
 
@@ -18,7 +17,7 @@ class WorkingHour(BaseModel):
     end_time: time
 
 class Canteen(BaseModel):
-    id: int
+    id: str
     name: str
     location: str
     capacity: int
@@ -26,9 +25,9 @@ class Canteen(BaseModel):
     is_opened: bool
 
 class Reservation(BaseModel):
-    id: int
-    student_id: int
-    canteen_id: int
+    id: str
+    student_id: str
+    canteen_id: str
     date: date
     start_time: time
     duration_minutes: int

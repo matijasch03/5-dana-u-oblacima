@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from typing import List
 from datetime import date, time
 
-from enums import *
+from model.enums import Meal, ReservationStatus
 
 
 class Student(BaseModel):

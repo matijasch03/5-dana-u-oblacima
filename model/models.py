@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List
 from datetime import date, time
 
@@ -13,16 +13,15 @@ class Student(BaseModel):
 
 class WorkingHour(BaseModel):
     meal: Meal
-    start_time: time
-    end_time: time
+    start: time = Field(..., alias="from")
+    to: time
 
 class Canteen(BaseModel):
     id: str
     name: str
     location: str
     capacity: int
-    working_hours: List[WorkingHour]
-    is_opened: bool
+    workingHours: List[WorkingHour]
 
 class Reservation(BaseModel):
     id: str
